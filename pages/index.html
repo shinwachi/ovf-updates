@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>OVF Server Explorer — KNIME update site</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+  :root { color-scheme: light dark; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+                 "Helvetica Neue", sans-serif;
+    max-width: 46rem;
+    margin: 3rem auto;
+    padding: 0 1.25rem;
+    line-height: 1.55;
+  }
+  h1 { margin-bottom: 0.25em; }
+  h1 + p { color: #666; margin-top: 0; }
+  code, pre {
+    font-family: "SF Mono", ui-monospace, "Menlo", Consolas, monospace;
+    font-size: 0.92em;
+  }
+  code {
+    background: rgba(127,127,127,0.15);
+    padding: 0.1em 0.35em;
+    border-radius: 3px;
+  }
+  pre {
+    background: rgba(127,127,127,0.10);
+    padding: 0.75rem 1rem;
+    border-radius: 6px;
+    overflow-x: auto;
+  }
+  a { color: #06c; text-decoration: none; }
+  a:hover { text-decoration: underline; }
+  table { border-collapse: collapse; margin: 1rem 0; width: 100%; }
+  th, td { text-align: left; padding: 0.4rem 0.75rem; border-bottom: 1px solid rgba(127,127,127,0.25); }
+  th { background: rgba(127,127,127,0.10); }
+  .hint { color: #888; font-size: 0.9em; }
+  ol.steps li { margin: 0.4em 0; }
+</style>
+</head>
+<body>
+
+<h1>OVF Server Explorer</h1>
+<p>A KNIME view for browsing remote HTTP or local workflow shares.
+   Update site.</p>
+
+<h2>Install in KNIME</h2>
+
+<ol class="steps">
+  <li>In KNIME: <b>File &rsaquo; Install KNIME Extensions...</b>
+      (or <b>Help &rsaquo; Install New Software...</b>)</li>
+  <li>Click <b>Add...</b> next to <i>Work with:</i></li>
+  <li>Paste one of the URLs below into <i>Location</i>, name it "OVF
+      Server Explorer", click <b>Add</b>.</li>
+  <li>Expand the <b>OVF Server Explorer</b> category, check the
+      feature, <b>Next</b>, accept the license, <b>Finish</b>,
+      restart when prompted.</li>
+</ol>
+
+<table>
+  <thead>
+    <tr><th>KNIME version</th><th>Update-site URL</th></tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>5.x</td>
+      <td><code>https://shinwachi.github.io/ovf-updates/5x/</code></td>
+    </tr>
+    <tr>
+      <td>4.1.x</td>
+      <td><code>https://shinwachi.github.io/ovf-updates/4.1.x/</code></td>
+    </tr>
+  </tbody>
+</table>
+
+<h2>After install</h2>
+
+<p>Look for a <b>Server Explorer</b> tab next to <b>KNIME Explorer</b>
+   in the Modeller perspective. If it isn't visible:
+   <i>Window &rsaquo; Show View &rsaquo; Other... &rsaquo; KNIME Views
+   &rsaquo; Server Explorer</i>.</p>
+
+<p>Configure a server under
+   <i>File &rsaquo; Preferences &rsaquo; KNIME &rsaquo; OVF &rsaquo; Servers</i>.</p>
+
+<h2>Offline / archive install</h2>
+
+<p>If your KNIME can't reach GitHub, download the archive zip and use
+   <i>Install New Software &rsaquo; Add &rsaquo; Archive</i> instead of
+   the Location URL:</p>
+
+<ul>
+  <li><a href="downloads/">All zip downloads</a></li>
+</ul>
+
+<p class="hint">Pre-built binaries only. This site is published via
+   GitHub Actions from a small distribution repository; source is not
+   included here.</p>
+
+</body>
+</html>

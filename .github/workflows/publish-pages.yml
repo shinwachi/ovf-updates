@@ -1,0 +1,86 @@
+name: Publish update site to GitHub Pages
+
+# Rebuilds the p2 update-site tree from the current dist/*.zip archives
+# and publishes it to https://shinwachi.github.io/ovf-updates/ on every
+# push to main. Tag pushes also trigger a rebuild so a new release goes
+# live without a follow-up commit.
+
+on:
+  push:
+    branches: [main]
+    tags: ["v*"]
+    paths:
+      - "dist/**"
+      - "pages/**"
+      - ".github/workflows/publish-pages.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Assemble site tree
+        run: |
+          set -euo pipefail
+          mkdir -p _site/downloads
+
+          # Extract each -updatesite.zip into a URL-friendly subdirectory.
+          # 5.x is served under /5x/ (dot-free path is friendlier in URL
+          # bars); 4.1.x keeps its dots because there's no ambiguity.
+          for VER in 5.x 4.1.x; do
+            SLUG=$(printf %s "$VER" | sed 's/^5\.x$/5x/')
+            ZIP=$(ls -1 dist/ovf-serverconnector-${VER}-*-updatesite.zip 2>/dev/null | sort -V | tail -1)
+            if [ -z "$ZIP" ]; then
+              echo "warn: no updatesite zip for $VER; skipping"
+              continue
+            fi
+            echo "unpacking $ZIP -> _site/$SLUG"
+            mkdir -p "_site/$SLUG"
+            unzip -q -o "$ZIP" -d "_site/$SLUG"
+          done
+
+          # Raw zip mirror for anyone who prefers the archive-based install
+          # (Install New Software > Add > Archive).
+          cp -f dist/*.zip _site/downloads/ 2>/dev/null || true
+
+          cp pages/index.html _site/index.html
+
+          # Simple directory index for /downloads/ so browsing works.
+          {
+            echo '<!doctype html><meta charset=utf-8><title>Downloads</title>'
+            echo '<h1>Downloads</h1><ul>'
+            for f in _site/downloads/*.zip; do
+              [ -f "$f" ] || continue
+              bn=$(basename "$f")
+              echo "<li><a href=\"$bn\">$bn</a></li>"
+            done
+            echo '</ul>'
+          } > _site/downloads/index.html
+
+          echo "--- final tree ---"
+          find _site -maxdepth 3 -type f | sort
+
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: _site
+
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4
