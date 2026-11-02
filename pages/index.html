@@ -46,7 +46,33 @@
 <p>A KNIME view for browsing remote HTTP or local workflow shares.
    Update site.</p>
 
-<h2>Install in KNIME</h2>
+<p><b><a href="install.html">Read the step-by-step install guide</a></b>
+   for Windows, Linux and macOS, with diagrams
+   (<a href="install.pdf">PDF</a>).</p>
+
+<h2>Install with the installer (Windows, Linux)</h2>
+
+<p>It asks who should get the plugin, checks the KNIME folder's permissions, and
+   explains any failure. Extract the zip, then run <code>install-ovf.cmd</code>
+   or <code>./install-ovf.sh</code>.</p>
+
+<table>
+  <thead>
+    <tr><th>KNIME version</th><th>Download</th></tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>5.x</td>
+      <td><a href="downloads/ovf-serverconnector-5.x-1.0.4-installer.zip">5.x installer zip</a></td>
+    </tr>
+    <tr>
+      <td>4.1.x</td>
+      <td><a href="downloads/ovf-serverconnector-4.1.x-1.0.4-installer.zip">4.1.x installer zip</a></td>
+    </tr>
+  </tbody>
+</table>
+
+<h2>Install with KNIME's wizard</h2>
 
 <ol class="steps">
   <li>In KNIME: <b>File &rsaquo; Install KNIME Extensions...</b>
@@ -78,12 +104,13 @@
 <h2>After install</h2>
 
 <p>Look for a <b>Server Explorer</b> tab next to <b>KNIME Explorer</b>
-   in the Modeller perspective. If it isn't visible:
-   <i>Window &rsaquo; Show View &rsaquo; Other... &rsaquo; KNIME Views
+   in the Modeller perspective. On KNIME 5 the tab is only in the classic
+   interface: <i>Menu &rsaquo; Switch to classic user interface</i>. If it
+   isn't visible: <i>View &rsaquo; Other... &rsaquo; KNIME Views
    &rsaquo; Server Explorer</i>.</p>
 
 <p>Configure a server under
-   <i>File &rsaquo; Preferences &rsaquo; KNIME &rsaquo; OVF &rsaquo; Servers</i>.</p>
+   <i>File &rsaquo; Preferences &rsaquo; Server Connector &rsaquo; Servers</i>.</p>
 
 <h2>Offline / archive install</h2>
 

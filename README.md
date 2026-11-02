@@ -12,7 +12,10 @@ live at:
 
 **<https://shinwachi.github.io/ovf-updates/>**
 
-Short version:
+Step-by-step guide with diagrams, for Windows, Linux and macOS:
+**<https://shinwachi.github.io/ovf-updates/install.html>**
+
+Short version, using KNIME's own wizard:
 
 | KNIME | Update-site URL                                     |
 | ----- | --------------------------------------------------- |
@@ -31,7 +34,9 @@ The binaries live under `dist/`:
 | p2 update-site archive 4.1.x| `ovf-serverconnector-4.1.x-<ver>-updatesite.zip` |
 | Dropin bundle 5.x           | `ovf-serverconnector-5.x-<ver>.zip`              |
 | Dropin bundle 4.1.x         | `ovf-serverconnector-4.1.x-<ver>.zip`            |
+| Installer 5.x               | `ovf-serverconnector-5.x-<ver>-installer.zip`    |
+| Installer 4.1.x             | `ovf-serverconnector-4.1.x-<ver>-installer.zip`  |
 
-To publish a new release, drop the four new zip files into `dist/`,
+To publish a new release, drop the six new zip files into `dist/`,
 commit, push. The `publish-pages` workflow rebuilds the site tree and
 redeploys — usually within a minute.
