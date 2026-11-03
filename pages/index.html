@@ -9,13 +9,14 @@
   body {
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
                  "Helvetica Neue", sans-serif;
-    max-width: 46rem;
+    max-width: 52rem;
     margin: 3rem auto;
     padding: 0 1.25rem;
     line-height: 1.55;
   }
-  h1 { margin-bottom: 0.25em; }
-  h1 + p { color: #666; margin-top: 0; }
+  h1 { margin-bottom: 0.25em; font-size: 2.2rem; line-height: 1.2; }
+  h1 + p { color: #666; margin-top: 0; font-size: 1.1rem; }
+  h2 { margin-top: 2.5rem; }
   code, pre {
     font-family: "SF Mono", ui-monospace, "Menlo", Consolas, monospace;
     font-size: 0.92em;
@@ -25,12 +26,6 @@
     padding: 0.1em 0.35em;
     border-radius: 3px;
   }
-  pre {
-    background: rgba(127,127,127,0.10);
-    padding: 0.75rem 1rem;
-    border-radius: 6px;
-    overflow-x: auto;
-  }
   a { color: #06c; text-decoration: none; }
   a:hover { text-decoration: underline; }
   table { border-collapse: collapse; margin: 1rem 0; width: 100%; }
@@ -38,23 +33,98 @@
   th { background: rgba(127,127,127,0.10); }
   .hint { color: #888; font-size: 0.9em; }
   ol.steps li { margin: 0.4em 0; }
+  .shot { margin: 1.5rem 0; }
+  .shot img { width: 100%; height: auto; display: block; border: 1px solid rgba(127,127,127,0.35);
+              border-radius: 8px; box-shadow: 0 6px 24px rgba(0,0,0,0.12); }
+  .shot figcaption { color: #888; font-size: 0.9em; margin-top: 0.5rem; text-align: center; }
+  .actions { display: flex; flex-wrap: wrap; gap: 0.6rem; margin: 1.25rem 0; }
+  .btn { display: inline-block; padding: 0.55rem 1rem; border-radius: 6px; font-weight: 600;
+         border: 1px solid #06c; }
+  .btn.primary { background: #06c; color: #fff; }
+  .btn:hover { text-decoration: none; filter: brightness(1.1); }
+  .feature { margin: 2rem 0; }
+  .feature h3 { margin-bottom: 0.2rem; }
+  .feature p { margin-top: 0; }
+  @media (prefers-color-scheme: dark) {
+    a { color: #6ab0ff; }
+    .btn { border-color: #6ab0ff; }
+    .btn.primary { background: #2f7fd8; border-color: #2f7fd8; }
+    h1 + p { color: #aaa; }
+  }
 </style>
 </head>
 <body>
 
 <h1>OVF Server Explorer</h1>
-<p>A KNIME view for browsing remote HTTP or local workflow shares.
-   Update site.</p>
+<p>Share KNIME workflows through a workflow server or a shared folder, right next to KNIME Explorer.</p>
 
-<p><b><a href="install.html">Read the step-by-step install guide</a></b>
-   for Windows, Linux and macOS, with diagrams
-   (<a href="install.pdf">PDF</a>).</p>
+<div class="actions">
+  <a class="btn primary" href="#install">Install</a>
+  <a class="btn" href="user-guide.html">User guide</a>
+  <a class="btn" href="install.html">Install guide</a>
+</div>
 
-<h2>Install with the installer (Windows, Linux)</h2>
+<figure class="shot">
+  <img src="img/hero.png" width="1020" height="770"
+       alt="KNIME with the Server Explorer tab on the left. A Team share server lists its folders and workflows, the local workspace is below it, and a workflow from the share is open in the editor.">
+  <figcaption>The Server Explorer tab: a shared folder above, your own workspace below.</figcaption>
+</figure>
+
+<p>Server Explorer adds a tab to KNIME 4.1 and later, and to KNIME 5 in the classic
+   user interface. It shows two lists: a shared place, which is either a server your
+   organization runs or a folder such as a network drive, and your own workspace.
+   Drag workflows between them to share and fetch them.</p>
+
+<h2>See it in action</h2>
+
+<div class="feature">
+  <h3>Connect to a server or a shared folder</h3>
+  <p>Click the gear, add the server's address or the folder's path, and test the connection.</p>
+  <figure class="shot"><img src="img/setup.gif" width="800" height="448" loading="lazy"
+       alt="Animation: adding a shared folder named Team share in the Servers settings, testing the connection, and the tab then listing its folders."></figure>
+</div>
+
+<div class="feature">
+  <h3>Open a shared workflow</h3>
+  <p>Double-click it. Server Explorer copies it into your workspace and opens it.</p>
+  <figure class="shot"><img src="img/open.gif" width="900" height="506" loading="lazy"
+       alt="Animation: double-clicking a workflow on the server. It appears in the workspace and opens in the editor."></figure>
+</div>
+
+<div class="feature">
+  <h3>Download by dragging</h3>
+  <p>Drag a workflow or folder from the server onto your workspace.</p>
+  <figure class="shot"><img src="img/download.gif" width="760" height="416" loading="lazy"
+       alt="Animation: dragging a workflow from the server onto the workspace. A message confirms the download."></figure>
+</div>
+
+<div class="feature">
+  <h3>Share by dragging</h3>
+  <p>Drag a workflow from your workspace into a folder on the server.</p>
+  <figure class="shot"><img src="img/upload.gif" width="760" height="416" loading="lazy"
+       alt="Animation: dragging a workflow from the workspace onto a server folder. Opening the folder shows it there."></figure>
+</div>
+
+<div class="feature">
+  <h3>Search both at once</h3>
+  <p>Type part of a name. You can also search node names and workflow notes.</p>
+  <figure class="shot"><img src="img/search.gif" width="760" height="416" loading="lazy"
+       alt="Animation: typing churn in the search box narrows both the server and the workspace to matching workflows."></figure>
+</div>
+
+<p>Also: new folders, renaming, moving, deleting, copying a workflow's address,
+   automatic refresh when colleagues change the server, and several servers to switch
+   between. The <a href="user-guide.html">user guide</a>
+   (<a href="user-guide.pdf">PDF</a>) explains it all, and is also built into KNIME:
+   click the question mark in the tab, or open <b>Help &rsaquo; Help Contents</b>.</p>
+
+<h2 id="install">Install with the installer (Windows, Linux)</h2>
 
 <p>It scans for KNIME or lets you select it in a file picker, asks who should
    get the plugin, checks the KNIME folder's permissions, and explains any failure. Extract the zip, then run <code>install-ovf.cmd</code>
-   or <code>./install-ovf.sh</code>.</p>
+   or <code>./install-ovf.sh</code>. The
+   <b><a href="install.html">install guide</a></b> (<a href="install.pdf">PDF</a>)
+   walks through Windows, Linux and macOS, with diagrams.</p>
 
 <table>
   <thead>
@@ -63,11 +133,11 @@
   <tbody>
     <tr>
       <td>5.x</td>
-      <td><a href="downloads/ovf-serverconnector-5.x-1.0.6-installer.zip">5.x installer zip</a></td>
+      <td><a href="downloads/ovf-serverconnector-5.x-1.0.7-installer.zip">5.x installer zip</a></td>
     </tr>
     <tr>
       <td>4.1.x</td>
-      <td><a href="downloads/ovf-serverconnector-4.1.x-1.0.6-installer.zip">4.1.x installer zip</a></td>
+      <td><a href="downloads/ovf-serverconnector-4.1.x-1.0.7-installer.zip">4.1.x installer zip</a></td>
     </tr>
   </tbody>
 </table>
@@ -101,6 +171,15 @@
   </tbody>
 </table>
 
+<h2>Install a new version</h2>
+
+<p>Run the new version's installer the same way you ran the first one, with the same
+   choice of who gets it. There's no need to remove the old version first. Server lists
+   and settings are kept. To see your version, open
+   <i>File &rsaquo; Preferences &rsaquo; Server Connector</i>: the plugin file name ends
+   with it. The <a href="install.html#update">install guide</a> covers the other ways of
+   installing, and removal.</p>
+
 <h2>After install</h2>
 
 <p>Look for a <b>Server Explorer</b> tab next to <b>KNIME Explorer</b>
@@ -109,7 +188,7 @@
    isn't visible: <i>View &rsaquo; Other... &rsaquo; KNIME Views
    &rsaquo; Server Explorer</i>.</p>
 
-<p>Configure a server under
+<p>Configure a server with the gear in the tab, or under
    <i>File &rsaquo; Preferences &rsaquo; Server Connector &rsaquo; Servers</i>.</p>
 
 <h2>Offline / archive install</h2>
